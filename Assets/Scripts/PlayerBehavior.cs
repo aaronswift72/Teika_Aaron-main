@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
-    //Merge Order: Cherry > Strawberry > Grape > Lemon > Orange > Apple > Pear > Banana > Watermelon > Pineapple
+    //Merge Order(points): Cherry(2) > Strawberry(4) > Grape(6) > Lemon(8) > Orange(10) > Apple(14) > Pear(18) > Banana (20)> Watermelon(25) > Pineapple(30)
 
 public class PlayerBehavior : MonoBehaviour{
     
@@ -21,6 +22,10 @@ public class PlayerBehavior : MonoBehaviour{
     public float enterTB = 0.0f;
     public float exitTB = 0.0f;
     public bool gameOver;
+
+    public int[] points;
+    public int score = 0;
+    public TMP_Text scoreText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -114,6 +119,12 @@ public class PlayerBehavior : MonoBehaviour{
         {
 
         }
+    }
+    public int updateScore(int index)
+    {
+        score = score + points[index];
+        scoreText.SetText("Score: " + score);
+        return score;
     }
     
 }

@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
 using UnityEngine;
 
-    //Merge Order: Cherry > Strawberry > Grape > Lemon > Orange > Apple > Pear > Banana > Watermelon > Pineapple
+    //Merge Order: Cherry(2) > Strawberry(3) > Grape(4) > Lemon(6) > Orange(8) > Apple(10) > Pear(14) > Banana(16) > Watermelon(20) > Pineapple(25)
 
 public class FruitBehavior : MonoBehaviour
 {
@@ -33,10 +33,17 @@ private void OnCollisionEnter2D(Collision2D other)
                     currentFruit.GetComponent<Collider2D>().enabled = true;
                     currentFruit.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
 
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehavior>().updateScore(fruitType);
+
                     //Destroy objects
                     Destroy (other.gameObject);
                     Destroy (gameObject);
                 }
+        } else if (otherType == fruitType && fruitType == fruits.Length - 1)
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehavior>().updateScore(fruitType);
+            Destroy (other.gameObject);
+            Destroy (gameObject);
         }
     }
 }
