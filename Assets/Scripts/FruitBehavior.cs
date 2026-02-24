@@ -7,11 +7,13 @@ public class FruitBehavior : MonoBehaviour
 {
     public GameObject[] fruits;
     public int fruitType;
+    private AudioSource mergeSource;
     
 
 void Start()
 {
     fruits = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehavior>().fruits;
+    mergeSource = GameObject.FindGameObjectWithTag("Player").GetComponents<AudioSource>()[0];
 }
 
 private void OnCollisionEnter2D(Collision2D other)
@@ -25,7 +27,7 @@ private void OnCollisionEnter2D(Collision2D other)
                 || gameObject.transform.position.x == other.transform.position.x
                 && gameObject.transform.position.y >= other.gameObject.transform.position.y)
                 {
-                    GetComponent<AudioSource>().Play();
+                    
                     //Create merged fruit
                     int choice = fruitType + 1;
                     GameObject currentFruit = Instantiate(fruits[choice], Vector3.Lerp(gameObject.transform.position, other.gameObject.transform.position, 0.5f), Quaternion.identity);
@@ -36,7 +38,7 @@ private void OnCollisionEnter2D(Collision2D other)
                     GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehavior>().updateScore(fruitType);
                 
                     //Play audio
-                    
+                    mergeSource.Play();
 
                     //Destroy objects
                     Destroy (other.gameObject);
@@ -44,7 +46,7 @@ private void OnCollisionEnter2D(Collision2D other)
                 }
         } else if (otherType == fruitType && fruitType == fruits.Length - 1)
         {
-            GetComponent<AudioSource>().Play();
+            mergeSource.Play();
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehavior>().updateScore(fruitType);
             Destroy (other.gameObject);
             Destroy (gameObject);

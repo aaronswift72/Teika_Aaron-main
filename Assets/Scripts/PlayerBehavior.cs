@@ -26,12 +26,16 @@ public class PlayerBehavior : MonoBehaviour{
     public int[] points;
     public int score = 0;
     public TMP_Text scoreText;
+    private AudioSource dropSource;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         //startTime = 0.0f;
         move = 0; // 0 means you can move either way
+        dropSource = GameObject.FindGameObjectWithTag("Player").GetComponents<AudioSource>()[1];
+
 
     }
     // Update is called once per frame
@@ -48,17 +52,17 @@ public class PlayerBehavior : MonoBehaviour{
             Vector3 playerPos = transform.position;
             Vector3 fruitOffset = new Vector3(0.0f, offY, 0.0f);
             currentFruit.transform.position = playerPos + fruitOffset * Time.deltaTime;
-        }
+        } 
         else
         {
-            int choice = Random.Range(0, fruits.Length);
-            currentFruit = Instantiate(fruits[choice], new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
+            int choice = GameObject.FindGameObjectWithTag("Queue").GetComponent<QueueManager>().UpdateQueue();
+            currentFruit = Instantiate(fruits[choice], new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity); 
         }
-        //drop fruit with timer
+        //drop fruit (with timer)
         if (Keyboard.current.spaceKey.wasPressedThisFrame && currentTime >= dropTime + dropCoolDown && gameOver == false)
         {
             dropTime = currentTime;
-
+            dropSource.Play();
             Rigidbody2D body = currentFruit.GetComponent<Rigidbody2D>();
             body.gravityScale = 1.0f;
 
