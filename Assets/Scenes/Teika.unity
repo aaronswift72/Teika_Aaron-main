@@ -1464,6 +1464,7 @@ MonoBehaviour:
   - {fileID: 6004888688855082167, guid: c1b81d24d4ef04bf4917455c8d749a6d, type: 3}
   - {fileID: 5040770744522570783, guid: c1b81d24d4ef04bf4917455c8d749a6d, type: 3}
   queue: 
+  maxFruitID: 7
 --- !u!1 &499416641
 GameObject:
   m_ObjectHideFlags: 0

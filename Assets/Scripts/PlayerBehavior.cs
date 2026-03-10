@@ -28,6 +28,8 @@ public class PlayerBehavior : MonoBehaviour{
     public TMP_Text scoreText;
     private AudioSource dropSource;
 
+    private QueueManager queue;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -35,7 +37,7 @@ public class PlayerBehavior : MonoBehaviour{
         //startTime = 0.0f;
         move = 0; // 0 means you can move either way
         dropSource = GameObject.FindGameObjectWithTag("Player").GetComponents<AudioSource>()[1];
-
+        queue = GameObject.FindGameObjectWithTag("Queue").GetComponent<QueueManager>();
 
     }
     // Update is called once per frame
@@ -43,8 +45,6 @@ public class PlayerBehavior : MonoBehaviour{
         gameOver = BorderBehavior.instance.callIsGameOver();
         currentTime = Time.time;
         offset = 0f;
-        //int choice = Random.Range(27, 60);
-        //print (choice);
         
         //fruit position below player
         if (currentFruit != null)
@@ -55,7 +55,7 @@ public class PlayerBehavior : MonoBehaviour{
         } 
         else
         {
-            int choice = GameObject.FindGameObjectWithTag("Queue").GetComponent<QueueManager>().UpdateQueue();
+            int choice = queue.UpdateQueue();
             currentFruit = Instantiate(fruits[choice], new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity); 
         }
         //drop fruit (with timer)

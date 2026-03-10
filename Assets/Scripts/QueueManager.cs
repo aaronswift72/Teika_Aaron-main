@@ -8,13 +8,15 @@ public class QueueManager : MonoBehaviour
     public int[] queue;
     private SpriteRenderer[] childRenderers;
 
+    public int maxFruitID;
+
 
     void Start()
     {
         queue = new int[4];
         for (int i = 0; i < 4; i++)
         {
-            queue[i] = Random.Range(0,7);
+            queue[i] = Random.Range(0,maxFruitID);
         }
         childRenderers = new SpriteRenderer[4];
         for(int i = 0; i < transform.childCount; i++)
@@ -40,7 +42,7 @@ public class QueueManager : MonoBehaviour
             queue[i - 1] = queue[i];
         }
 
-        queue[3] = Random.Range(0,7);
+        queue[3] = Random.Range(0,4);
 
         return currentType;
     }
