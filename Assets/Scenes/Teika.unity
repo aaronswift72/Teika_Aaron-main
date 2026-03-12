@@ -154,7 +154,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.35998535, y: -23.190033}
+  m_AnchoredPosition: {x: 0.35998535, y: -23.190094}
   m_SizeDelta: {x: -1377.86, y: -748.47}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &43375420
@@ -2994,6 +2994,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff199815c76304d8fa6066a7a361fb9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BackgroundManager
+  bgPrefab: {fileID: 1322681830515512369, guid: 8a888ee4476df4bf196ed76ca7957348, type: 3}
+  speed: 0.01
+  pivotPoint: -10.24
+  scale: 7
 --- !u!4 &1398053918
 Transform:
   m_ObjectHideFlags: 0
