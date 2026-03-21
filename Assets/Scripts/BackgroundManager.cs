@@ -30,16 +30,21 @@ public class BackgroundManager : MonoBehaviour
     {
         for (int i = 0; i < 3; i++)
         {
-            float xPos = bgs[i].transform.position.x + speed;
-            float yPos = bgs[i].transform.position.y + speed;
+            float xPos = bgs[i].transform.position.x + speed * Time.deltaTime;
+            float yPos = bgs[i].transform.position.y + speed * Time.deltaTime;
             Vector2 position = new Vector2(xPos, yPos);
             bgs[i].transform.position = position;
 
             if(bgs[i].transform.position.x > -pivotPoint/2)
             {
                 position = new Vector2(pivotPoint, pivotPoint);
+                bgs[i].transform.position = position;
             }
-            bgs[i].transform.position = position;
+            else
+            {
+                bgs[i].transform.position = position;
+
+            }
         }
     }
 }

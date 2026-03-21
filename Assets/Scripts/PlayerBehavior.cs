@@ -73,13 +73,13 @@ public class PlayerBehavior : MonoBehaviour{
         }
         
         // Keyboard movement of player
-        if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed && move != 1)
+        if ((Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed) && move != 1)
         {
-            offset = - speed;
+            offset = - speed * Time.deltaTime;
         }
-        if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed && move != 2)
+        if ((Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed) && move != 2)
         {
-            offset = speed;
+            offset = speed * Time.deltaTime;
         }
 
         if (gameOver == false)
